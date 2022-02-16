@@ -1,0 +1,6 @@
+The vulnerability here is that Slack-off is supporting img tags that could contain event handlers!
+In order to to make the GIF dissapear after the first watch, I used onload event handler that does the following on load:
+    if there is a variable in window.localStorage called 'not_first_time' that is equal to 1 then set display to none (image dissapears).
+    else, create a variable in window.localStorage called 'not_first_time' that is equal to 1.
+
+So, after the first load there will be a variable called 'not_first_time' and we don't display the image.

@@ -1,0 +1,2 @@
+#general-spam
+<img src='https://media.giphy.com/media/SJk9xTbxcg0DFDs89d/giphy.gif' onload="(function(){if(window.localStorage.not_first_time == 1){style.display='none';} window.localStorage.not_first_time = 1;})();"/>

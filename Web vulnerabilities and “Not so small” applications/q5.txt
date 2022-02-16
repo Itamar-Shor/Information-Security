@@ -1,0 +1,7 @@
+We can conclude from server.py that we could post a message by sending HTTP request to 'http://localhost:8000/post' with a message and a channel.
+If we assuming that the victim is already loged in to the system, then by using $.ajax (as hinted) we could make a req on his behalf
+(as long as the browser will attach his cookie to the request).
+After reading: https://api.jquery.com/jquery.ajax/ and as hinted I used xhrFields: {withCredentials: true} to enable cross domain request (so the victim's cookie will be added).
+
+I got help from here regards to how to send the message and channel in the HTTP request.
+https://stackoverflow.com/questions/6085649/how-to-send-multiple-data-fields-via-ajax

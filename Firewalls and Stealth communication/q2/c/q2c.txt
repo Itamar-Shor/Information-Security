@@ -1,0 +1,1 @@
+If the packet contains the word 'love' or the entropy of the message is bigger then 3 - the bigbrother will add this ip to the set.

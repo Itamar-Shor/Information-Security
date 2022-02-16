@@ -1,0 +1,13 @@
+I used this website: https://www.e2enetworks.com/help/knowledge-base/how-to-block-ip-address-on-linux-server/ to generate the block command (with iptables).
+
+To keep track of all the SYN requests, I've created the Sync_manager class. 
+The Sync_manager stores the SYN requests in a dictionary ,which keys are the src ip addresses and values are lists of: time of arrival + window (or timeout).
+When a new req is processed, the Sync_manager updates the list associated with the ip address - meaning it removes all the elements in the list with values 
+smaller then the time of arrival of the current SYN. This action is to "slide" the window of requests.
+After the sliding, if the size of the list (including the new packet) is bigger then MAX_ATTEMPS then we block this ip.
+
+Notes:
+    In this implementation, an ip list is updated only when a new packet from this ip has arrived! that means that an attacker could send syn packets
+    from alot of different ip addresses and we eventually will run out of space. 
+    In order to solve this we need to update our ip lists every time period which means usuing threads. I didn't think this is the point of this question and 
+    thats why I left my solution as is. I'll hope that I'm right (:

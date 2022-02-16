@@ -1,0 +1,3 @@
+Firstly I've checked that the packet contains IP, TCP, RAW layers. 
+If not, there is nothing to do here.
+else, I simply check if the decoded bytes from the RAW layer contains the word 'love' and if it is I add the IP addr to the set.

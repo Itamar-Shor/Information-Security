@@ -1,0 +1,9 @@
+This attack is a SQL injection.
+I notice that there is no check of the new_name in the /renmae operation (only of the username).
+If the username exists then the server will envoke the rename_user method which will execute the following SQL command:
+    "UPDATE users SET full_name = '%s' WHERE user_id = '%s'" %(new_name, user_id,)
+
+So if we try to change bob's name with the very long name: "Bob Marmite' , password = sha1('1234') WHERE username = 'bob' --"
+we will get the following:
+    "UPDATE users SET full_name = 'Bob Marmite' , password = sha1('1234') WHERE username = 'bob' (after the -- all is consider a comment).
+And this will change bob's password to 1234 as wanted.

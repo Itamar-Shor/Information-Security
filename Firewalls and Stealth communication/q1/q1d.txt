@@ -1,0 +1,5 @@
+In order to make every port look open we need to answer every SYN requests with SYN+ACK!
+So we sniff everything (without filtering) and if the curr packet is SYN requests we answer it.
+
+I used this inorder to block all outgoing RST packets from this machine:
+https://stackoverflow.com/questions/13215135/how-to-make-all-outgoing-rst-drop: 

@@ -1,0 +1,11 @@
+generate_syn_packets implementation:
+    I've generate a syn packet (flags=SYN) for every dastination port (with the given ip addr).
+
+analyze_scan implementation:
+    If we get a response with SYN+ACK then the port is OPEN.
+    If we get a response with RST+ACK then the port is CLOSED.
+    If we don't get any response - we assume that the port is FILTERED.
+    Based on that logic - I've initialized all the ports to be marked as FILTERED. 
+    Then I've went over all the answers and base on the flags I've determined if the port is CLOSED or OPEN.
+
+This is called a stealth syn scan because we've never complete the TCP connection (handshakes).

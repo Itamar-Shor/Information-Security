@@ -1,0 +1,16 @@
+
+First of all, I checked if the destination is in fact the course website (like in q1.py).
+
+Now, in order to redirect the user to another location we need to send a ip+tcp packet with the new location.
+The packet is composed of 3 layers:
+    1.IP.
+    2.TCP.
+    3.Raw message (bytes).
+The Raw messgae is already provided for us in 'RESPONSE'.
+In our packet we will replace all dastination addresses (mac and ip) with the source addresses and vice-versa.
+The tricky part was the seq and ack numbers ,in the TCP layer, of our packet.
+As we saw in class, all tcp communications are numbered in order to guarantee order, thats why we need to adjust those numbers in our packet so the user won't drop it.
+According to 'https://packetlife.net/blog/2010/jun/7/understanding-tcp-sequence-acknowledgment-numbers/' the ack number should be the user seq_number plus the length of the user's payload.
+The seq number of the response should be the same as the seq number of the request.
+
+In the TCP layer I used the flag 'FA' for FIN and ACK inorder to end the communication (=FIN) and send the redirect message with ack of the user's message (=ACK). 

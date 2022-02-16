@@ -1,0 +1,14 @@
+Winston side:
+    I took the original message and converted it to bytes and then to integer.
+    Then with shifting, I sent every tree bits to julia in the reserved bits of an SYN packet.
+    As mentioned in the instructions the ack field in every packet is the total number of trios winston need to send,
+    and the seq number is the index of the current trio.
+
+Julia side:
+    julia has a dictionary which keys are the trio indices and the values are the actual trios.
+    I used scapy sniff to capture all the packets from the SRC_PORT.
+    every SYN packet that julia sees (on the SRC_PORT) she update the dictionary with the trio index and the trio itself. 
+    I chose dictionary so that a trio could not be stores twice!
+    When the size of the dictionary is equal to the total number of trios (stored in the ack number) julia stops sniffing.
+    I used the stop_filter argument in the sniff method to know when to stop sniffing (taken from #https://stackoverflow.com/questions/19794798/scapy-count-number-of-sniffed-packets).
+    After julia done sniffing she reaasemble the trios to the whole message (again with shifting and stuff).

@@ -1,0 +1,4 @@
+I chose AES mode = CBC (Cipher-Block Chaining), with 32 byte key and 16 byte iv that both winston and julia has.
+Now, winston encrypts the message before sending , and julia decrypts the message.
+
+For padding (before winston sent the message) I used , as suggested, PKCS7 padding.

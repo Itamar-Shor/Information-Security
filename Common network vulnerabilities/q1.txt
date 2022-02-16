@@ -1,0 +1,11 @@
+packet_filter implemantation:
+    I wanted to check if the packet's destination port is port 80 (=http).
+    In order to do so I needed access to the TCP layer of the packet. 
+    So, eventually I returned True to all packets with TCP layer that their destination port is port 80.
+
+parse_packet implemantation:
+    I stared with checking if the packet has a Raw layer, this is the juicy part (with the username & password).
+    If it doesn't I returned None. 
+    otherwise, I checked if the string 'HOST: `WEBSITE' is in the packet (after decoding it to string). If it doesn't I return None.
+    At this part I used urlparse.parse_qs on the Raw layer of the packet in order to get a dictionary with query variable names as keys and the values are lists of values for each name.
+    After reading and testing it tures out that the username and password are in fact query variables, so its left to do is to access the username/password entries.

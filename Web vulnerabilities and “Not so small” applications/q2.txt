@@ -1,0 +1,5 @@
+When posting a message the handle_message function in server.py is envoked.
+We can notice that there is almost no checking in the /join command (to add a new channel) - the channel name should start with #.
+After a quick search, I found out that the # symbol is used for private vars or method - so it could be added before a script tag without affecting it.
+When we creating a new channel, its name automatically (after a refresh) added to the channel list, and because our new channel's name is a script
+it will run as soon as the cahnnel is showing!

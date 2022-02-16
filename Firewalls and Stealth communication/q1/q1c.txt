@@ -1,0 +1,3 @@
+The problem with our firewall is:
+    Any attacker could use scapy (or something else) to send the server syn requests from 'us', and after 16 requests the actual us will get blocked!
+    He could do that by simply setting our ip address as the source ip address of the packet. (there is no validation on the source ip address).

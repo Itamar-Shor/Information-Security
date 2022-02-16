@@ -1,0 +1,21 @@
+I used the following link to verify what are the arguments of the ARP layer:
+https://stackoverflow.com/questions/50703738/what-is-the-meaning-of-the-scapy-arp-attributes.
+
+is_packet_to_original_gateway implemantation:
+    I checked if the packet's dastination mac address is the gateway's mac address,
+    and that the packet's source ip & mac addresses are not our ip & mac addresses.
+    As we saw in class when routing packets to the internet the dastination mac address will be the gateway's mac address, 
+    while the dastination ip address will be the actual dastination address.
+
+is_stolen_packet implemantation:
+    In order to check if packet is 'stolen' I checked if it's dastination mac address is our mac address, and that it's dastination ip address is different from ours.
+    The stolen packets will come to us as a result of our arp table posining. The arp table is a mapping of ip addresses to mac addresses.
+    Thats why the stolen packets will have our mac address but not our ip address.
+
+create_poison implemantation:
+    I used the following link to verify what are the arguments of the ARP layer:
+    https://stackoverflow.com/questions/50703738/what-is-the-meaning-of-the-scapy-arp-attributes.
+    Then I used self.addresses to tell the gateway that the victim's ip address should be mapped to our mac address.
+
+Extra notes:
+    I used: 'ip route | grep default' to find the gateway ip address.

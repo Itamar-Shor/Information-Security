@@ -1,0 +1,7 @@
+In the model.py code we can notice that edward exists in the USERS table with an empty password (if we could login with an empty password - the problem was solved).
+As we saw in class, after a successful login, we get a login cookie which the browser will then atach to all of the future requests.
+My idea was to forge a cookie with edward username. To do so, I started with login req with: boss - 'Dancing in the dark'.
+By doing so I managed to watch a valid login cookie, which was of the form: "login=base64encode(username)".
+Now, all is left to do is to create a similiar cookie with edward's username and click refresh! 
+
+note - I used btoa to encode edward to base64 (https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript).
