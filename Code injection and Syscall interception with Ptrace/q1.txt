@@ -1,0 +1,7 @@
+
+In order to find the process (=antivirus) pid I used the following command: ps -e | grep "[a]ntivirus".
+Where:
+    ps -e: list all kind of inforamtion (including pid) for every running process.
+    grep antivirus: (with piping) searches antivirus in ps -e output.
+In order to prevent ps -e from listing our grep command I added [] arround random letter, as suggested in https://unix.stackexchange.com/questions/74185/how-can-i-prevent-grep-from-showing-up-in-ps-results.
+After that, all is left is to take the pid from the first row printed (if there is multipal antivirus instances).

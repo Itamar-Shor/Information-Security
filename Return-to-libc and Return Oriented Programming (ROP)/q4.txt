@@ -1,0 +1,21 @@
+
+a. Explaination why the loop works:
+    (almost) every function starts with PUSH ebp, and ends with POP ebp, includind the function puts (I checked).
+    After we call puts the stack pointer is just above the address of puts, and as written above the first thing puts does is to push ebp.
+    So in order to save this address (important to the loop execution), before calling to puts we save in ebp the address of puts!
+    puts can only override the lower addresses of the stack ,meaning - our puts address and the gadget responsible of putting the address in ebp.
+    As I explained above, the puts address is preserved by puts itself (by push ebp). 
+    Regards the first gadget - we don't care if it gone! It's only used before the first jump to puts.
+
+b. Explaination why we need to skip 4 bytes on the stack after puts:
+    In order of puts to work properly we must supply return address and a string argument. When puts is done it simply pop its return address and call RET.
+    Meaning the stack pointer is now pointing to the argument of puts (the string address). 
+    In order to continue with our ROP execution we must skip those bytes and get to the next gadget in line!
+
+c. Explaination how I included the string:
+    I added the actual string at the end of the ROP 'message' and then I put its address ('orignal return address' address + len(ROP)) in the right place.
+
+Gadget explaination:
+    1. to skip 4 bytes I used the gadget: 'ADD esp, 0x4'
+    2. to put the address of puts in ebp I used (as in q3) a POP gadget followed by the address.
+    3. to 'jump' back to the begining I used 'POP esp' gadget followed by the address to jump in the stack (the address of the adress of puts).

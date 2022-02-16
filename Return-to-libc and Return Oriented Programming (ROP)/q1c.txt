@@ -1,0 +1,5 @@
+Now we want to exit nicely instead of crushing the program.
+As we saw in class, we simply need to call exit after the we call system.
+I did it by passing exit's address as system's return address, and in order to exit with code 0x42 I put this value after the address of '/bin/sh'
+in the place of exit's argument.
+Luckily for us, exit function does not need return address (the /bin/sh address is sitting in where the return address should be).

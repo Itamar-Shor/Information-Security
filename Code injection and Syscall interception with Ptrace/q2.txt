@@ -1,0 +1,14 @@
+I found the address to override (=check_if_virus address) by (similiar to ex 6):
+    run gdb with ./binaries/antivirus.
+    breakpoint main.
+    run <some_dir>.
+    print check_if_virus.
+I used the trick described in the question: complinig q2.c with arbitrary pid, addr, ret_0_func and then patching the real values in q2.py.
+I used the following assembly instructions in order to always return 0:
+    XOR EAX, EAX;
+    RET;
+In order to write to memory I used PTRACE_POKEDATA request.
+PTRACE_POKEDATA writes 4 bytes to addr so I padded the above code with NOPs to make sure the program is 4 bytes.
+
+Remarks:
+    although the ptrace signature expects void *ptr as addr (in PTRACE_POKEDATA), because I put the real address in an integer variable I passed it as is(without &). 

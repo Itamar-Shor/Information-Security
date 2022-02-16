@@ -1,0 +1,3 @@
+Inside check_password function our password (after encoding) is being decoded ans stored in 'buff'.
+'buff' is of size 65 bytes (minus the already taken 11 bytes) and 'hash' which is located after 'buff' on the stack is of the same size.
+That why I send a password of length 156 to ensure it would override the return address.

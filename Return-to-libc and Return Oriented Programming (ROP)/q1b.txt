@@ -1,0 +1,7 @@
+just for me:
+    .text libc: 0xb7b4e610 - 0xb7c9b386
+    .rodata libc: 0xb7c9c740 - 0xb7cbd848
+
+I found system's address with 'print system' in gdb, and '/bin/sh' address with find command (on .rodata section).
+As we learned in class, I ran over the original return address with system's address and the address of the argument ('/bin/sh') 4 bytes after it.
+In this question I just put NOPs where the system's return address should be.

@@ -1,0 +1,9 @@
+
+I took insperation from this website: https://nullprogram.com/blog/2018/06/23/ , and from the rec.
+My c program intersept all syscalls with PTRACE_SYSCALL request. 
+In each iteration there is 2 PTRACE_SYSCALL requests: the first causes the program to stop before the syscall, 
+and the other causes the program to stop after the syscall.
+When the program stops before a syscall, I read the registers content and if the syscall is read syscall (eax=0x3) then it changes 
+the length to be read to 0 (by edx=0).
+To get registers content I used PTRACE_GETREGS, and to set registers content I used PTRACE_SETREGS.
+I took the information about syscall registers definisions from: https://www.tutorialspoint.com/assembly_programming/assembly_system_calls.htm

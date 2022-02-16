@@ -1,0 +1,18 @@
+We want to write 1 to the 'auth' variable.
+In order to do so, I implemented the following:
+    "MOV reg_1, address of 'auth' "
+    "MOV reg_2, 0x1"
+    "MOV [reg_1], reg_2"
+
+As we saw in the recitation, I used POP gadgets to mimic the MOV operations (after each pop gadget I placed the value to be stored in the registers).
+It doesn't metter which registers we use (it important to use 2 different regs!) so I started by finding all 'MOV {0}, {1}' gadgets,
+and then I checked if:
+    1. the move instruction containing 2 different registers.
+    2. there is pop gadgets which corespond to those registers.
+The program uses the first combo it finds.
+
+I implemented this logic in the get_gadgets function I created.
+
+In addition, in order to get the print(victort) after we alter 'auth' I put the original retrun address of check_password after the write gadget.
+I found this address by checking what is the address of the instruction after call check_password (in ida).
+Finally, all is left is to padd with NOPs and send.

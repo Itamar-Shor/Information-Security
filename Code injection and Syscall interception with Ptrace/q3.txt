@@ -1,0 +1,13 @@
+In order to find the GOT addresses I used - "objdump -D ./binaries/antivirus -M intel --section=.plt" as shown in the rec.
+The alternative function I used is opendir.
+Explanation:
+    The check_if_virus(path) is called only on files and not directory! That is because the program is checking before that if is_directory,
+    and if path in sirectory the program does something else.
+    When reading the man page of opendir, I understood that if opendir failes its returning NULL which is a fancy word for 0.
+    From all this information - opendir on all files (including our maleware) will fail and return 0.
+
+As we saw in the last rec, the first jump instruction in the plt is to the addr srored in the GOT entry.
+In order to override check_if_virus GOT entry with opendir GOT entry we need to know addr written in opendir GOT entry.
+To do so I used PTRACE_PEEKTEXT.
+Then , like in the previous question, I wrote the data in check_if_virus GOT entry.
+    
