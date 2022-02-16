@@ -1,0 +1,5 @@
+In this sudo program there is no size check on the 'password' (=our input to sudo).
+Because the function concatenate 'password' to 'buff' using strcat, we can cause 'buff' to overflow.
+Now, in order to cause segmantation fault, we want our password to override the return address of the check password method.
+The size of 'buff' is 65 bytes and it is the first local variable in check password, that means that our password must be larger then 65
+and even more to run over ebp and etc. I chose a password of length 130 bytes just to be certain I override the return addr.

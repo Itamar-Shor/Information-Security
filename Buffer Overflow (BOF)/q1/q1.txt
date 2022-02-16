@@ -1,0 +1,8 @@
+The vulnerability:
+    In the function 'check_password' the function strcat is used in order to concatenate 'password' to 'buff'.
+    strcat copies bytes from 'password' to 'buff' staring with the first '\0' char at 'buff'.
+    Luckely for us, the first null terminator in 'buff' is located at the 12'th byte.
+    Now we can notice that the size of 'buff' is only 20 bytes, and the size of our password could be up to 10 bytes.
+    In addition, it so happened that the 'buff' variable is just below the 'auth' variable in the stack (it is written in the code just after 'auth').
+    Finally, if we enter 10 bytes password , the last byte of our password will be written on the first byte of 'auth'.
+    So what is left to do is to enter 10 bytes password and make sure that the last byte is 1 (not '1' the character), and then 'auth' will be equal to 1!!

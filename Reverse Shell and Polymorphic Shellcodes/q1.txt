@@ -1,0 +1,5 @@
+In the function 'handle_connection' (in server.c) the program is writing the message received in local variable 'buff'.
+The writing is made by the function 'recv' ,which stops when it reached the message length. Luckily for us we also provide the message length.
+'buff' is of size 1024 bytes so just to make sure the message would override the return addr, I sent a message of length 1125.
+
+For later purposes (e.g. finding the begining of 'buff' for q2) I sent a message with assending characters.

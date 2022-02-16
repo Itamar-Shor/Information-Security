@@ -1,0 +1,5 @@
+The result of the function 'validate' is computed by comparing the second byte to the xor result.
+Instead of doing so, I change the line of the comparison to be "cmp al, al" in order to always return TRUE.
+Before the patch, this command took 3 bytes but "cmp al, al" take only 2 bytes - so I padd it with one NOP.
+
+I used this website: https://defuse.ca/online-x86-assembler.htm#disassembly2 to encode the command.

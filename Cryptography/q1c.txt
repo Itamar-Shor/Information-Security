@@ -1,0 +1,14 @@
+def plaintext_score implementation:
+    I took the idea from: https://crypto.stackexchange.com/questions/30209/developing-algorithm-for-detecting-plain-text-via-frequency-analysis.
+    The function counts the number of occurances of each letter in the english alphabet in the given text. 
+    Then it compares it to the already known english letter statistics for a sentences of the same length. (len(text) * letter_frequency).
+    The comparison is made by the chi-squred test. From definision, smaller chi-squred test implies more resemblance to english sentence.
+    Given that, in order to give higher score to strings more likely to be english sentences, the score is defines as: 
+    score = 1 / (chi-squred + 1). (I've added 1 to the denominator to avoid zero division).
+
+    I took a english letters statistic from wikipedia: https://en.wikipedia.org/wiki/Letter_frequency.
+    
+    After testing some examples of my own, I added the space character to the letter frequencyies. 
+    In wikipedia they metioned that: 
+    "In English, the space is slightly more frequent than the top letter (e) and the non-alphabetic characters (digits, punctuation, etc.).
+    collectively occupy the fourth position (having already included the space) between t and a."

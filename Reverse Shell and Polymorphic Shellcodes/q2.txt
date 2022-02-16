@@ -1,0 +1,12 @@
+As suggested in the assignment, I started with writing a c program that does what the shell code suppose to do. This is 'q2_helper.c' program.
+I used: "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md " for insperation.
+Then I compiled 'q2_helper.c' and copy the assembly instructions from ida.
+I started with removing all functions calls that the complier added (like __x86_get_pc_thunk_bx).
+Then I replaced every function call with the right address (according to ida ./server/server).
+I put the absulote addr in eax, and then I call eax to avoid dealing with relative jumps.
+
+After some debuging I realize that after the program executes the 'ret' command with our return address the esp reg is located just below our shellcode.
+In order to avoid running over the shellcode (with 'push's) I started the shellcode with moving the head of the stack (esp) away from the shellcode (sub esp, 0x44c;).
+
+As I mentioned in q1.txt the writing in the server is done by 'recv', thats why we don't need to worry about zero bytes in the shellcode.
+I used the call trick with (.STRING) in order to get the addresses of "/bin/sh" and "127.0.0.1".

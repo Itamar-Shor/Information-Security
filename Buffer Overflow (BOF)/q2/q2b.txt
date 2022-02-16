@@ -1,0 +1,5 @@
+I followed the step in the exercise and rec:
+  -  With the gdb, I found that the buffer starts at offset 0xbfffdfb9, and that the return addr is at offset 0xbfffdffc.
+  -  Then I wrote the shellcode.asm using the skeleton from the rec. I used xor in-order to dynamically add null terminators (because of the strcat method).
+  -  For padding the rest of the buffer (until we've reach the return addr) I used NOPs.
+  -  When adding the new return addr I make sure that the encoding is little endian, same as the program expected.

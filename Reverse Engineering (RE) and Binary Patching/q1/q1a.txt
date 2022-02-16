@@ -1,0 +1,6 @@
+Let 'count' be the numerical value of the first byte of the message ,Valid messages holds:
+    The second byte of the message is the result of xoring 0xA6 with 'count' bytes from the message, starting from the third byte.
+If the message is less then 2 bytes, the message is invalid. If 'count' is bigger then the actual lenght then xor untill the end.
+If 'count' is negative or zero then the second byte must be 0xA6 in order to pass the check. 
+
+In the function check_message I (tried to) read 256 + 2 bytes because the maximum value 'count' could be is 256 (1 byte). 

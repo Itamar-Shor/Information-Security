@@ -1,0 +1,11 @@
+def brute_force implementation:
+    Iterate over all possible keys of key_length bytes.
+    For each key:
+        try to decrypt the cipher_text using the curr key.
+        calculate the resemblance of the decypted text to an english sentence by usuing plaintext_score.
+    return the string with the highest score.
+
+    Some remarks:
+        I initiate the max_score to be -1 because , from my plaintext_score implementation, the score is always positive!
+        In order to iterate over all keys of key_length bytes, I used an int variable which increamented by 1 at each iteration and then I used to_bytes function
+        to convert it to bytes.

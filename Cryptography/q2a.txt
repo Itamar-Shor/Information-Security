@@ -1,0 +1,6 @@
+def extract_PIN implementation:
+    Because the pin in 4 digits at most (and e is relatively big) - I try encrypting all the possible pin combinations
+    in order to find the one equal to the encrypted pin.
+    At first I tryed to encript the curr_pin myself ( by curr_pin**e mod n), but it turnes out that using ATM().encrypt_PIN is much faster!
+    Just to point out that in both ways I got the same result, My guess is that the crypto library uses some optimizations.
+     

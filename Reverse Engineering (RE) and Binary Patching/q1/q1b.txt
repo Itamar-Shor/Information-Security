@@ -1,0 +1,5 @@
+In this implementation I changed the 'count' byte (=first byte) to be negative (any value from 128 to 255, after sign extension),
+and the the 'xor' byte (=second byte) to be 0xA6. The rest of the message remains. 
+Correctness: if 'count' is negative then in order to get valid message the second byte must be 0xA6.
+
+If the first and/or second bytes are missing the function adds them.

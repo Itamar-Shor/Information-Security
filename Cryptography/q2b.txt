@@ -1,0 +1,6 @@
+def extract_credit_card implementation:
+    The credit card number is at most 9 digits number, e = 3 and n is very long -  2048 bits public key.
+    By the definision of RSA, the encrypted message is: (credit card number)^e  mod n.
+    The maximum of (credit card number)^e is: 999999999^3 which takes log_2(999999999^3) = 90 bits.
+    From this we can conclude that (credit card number)^e  mod n = (credit card number)^e. 
+    Thats why all we need to do in order to decrypt the nubmer is to take the third (=e) root of the chiper_text.

@@ -1,0 +1,36 @@
+
+ ########################################################################################################################
+ 1        XOR    EDX, EDX           // EDX = 0
+ 2   _LABEL1:
+ 3        CMP    [EDI], DL
+ 4        JZ     _LABEL2            // jump to _LABEL2 if MEM[EDI] == EDX (fisrt byte only).
+ 5        INC    EDI
+ 6        JMP    _LABEL1            // keep searching untill we've found location that satisfy the condition above.
+ 7
+ 8   _LABEL2:
+ 9        MOV    AL, [ESI]          
+10        MOV    [EDI], AL          // MEM[EDI][first byte] = AL = MEM[ESI][first byte].
+11        INC    ESI                // ESI++.
+12        INC    EDI                // EDI++.
+13        CMP    AL, DL             
+14        JNZ    _LABEL2            // keep doing the above untill AL == DL.
+15
+16   _END:
+########################################################################################################################
+
+Answer:
+
+The function receive 2 addresses: ESI, EDI.
+The first line sets EDX = 0.
+
+The first loop (i.e. _LABEL1): 
+    Going over all bytes in the memory , starting with &EDI, untill it finds a byte which equals to zero (=DL, first byte of EDX).
+
+The second loop (i.e. _LABEL2):
+    At this point EDI points to the first zero byte (assuming such byte exists). The second loop write bytes from &ESI to &EDI, 
+    untill it encounter with a zero byte in &EDI (we write the zero byte as well).
+
+conclution - key idea: 
+    The function copies bytes from &EDI into &ESI, starting from the first byte (of &ESI) that is equal to 0, 
+    and ends with the first byte of &EDI that is equal to zero.
+    For example, if the inputs are strings in C then the funcion concatinate the second string to the first string (strings in C ends with 0).

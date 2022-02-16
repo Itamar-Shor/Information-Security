@@ -1,0 +1,7 @@
+def smarter_break implementation:
+    I divided the cipher text to 'key_length' parts. Each part contains all the bytes which have been decoded with the same byte from the key.
+    For example: for 16 byte key , the cipher_text is divided into 16 parts which the i'th part contains all the bytes at index j = i + k*key_length
+    for some integer k.
+    Now, our problem is to decrypt 'key_length' cipher texts which have been decoded using only 1 byte key each !!!
+    All is left to do is to use the brute_force algorithem for each part of the original cipher_text, with a 1 byte key.
+    At the end I rearrange the 'key_length' decrypted text we've got in the right order they supposed to be in.

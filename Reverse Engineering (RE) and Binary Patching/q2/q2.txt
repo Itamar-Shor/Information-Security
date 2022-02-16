@@ -1,0 +1,6 @@
+Both of the deadzones are in the function 'readfile'. 
+I followed the suggested instructions and wrote the patches in 'patch1.asm' and 'patch2.asm'.
+The difficult part was to determine the jump addr in the code. If the argument to jump is a constant then the jumping address is relative to EPI.
+I read in https://rayanfam.com/topics/assembly-challenge-jump-to-a-non-relative-address-without-using-registers/ that if you put the absolute addr in register
+and then use it in jmp command , the jump will be absolute.
+Unfortunetly, this doesn't imply to JNE so I computed the realtive addr in this command.

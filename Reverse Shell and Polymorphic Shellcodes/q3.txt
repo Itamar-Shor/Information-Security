@@ -1,0 +1,27 @@
+The decoder code:
+    1.In order to get the value 0xff in the decoder code I used the following instructions:
+      push 0; 
+      pop ebx; 
+      dec ebx;
+      Thats way ebx is set to -1, which in 2's complement representation is 0xffffffff.
+    2.In order to deal with indices that are greater then 0x7f, I increased eax by 0x7f every time the indices are to big.
+      The indices in the decoder code is relative to the current eax!
+      In order to add to eax I used the following instructions:
+      push 0x7f; 
+      add eax, [esp]; 
+      pop ecx; 
+      Where the pop is neccesary to restore esp.
+
+Storring the address of the shellcode in EAX:
+    Our message to the server is as follow: length + padding + shellcode + return address + '\0'.
+    After executing the 'ret' command, esp is located just above the return address. From that fact we can conclude that the start of the sheelcode
+    is located at: esp - 4(for the 4 bytes of the return addr) - len(shellcode).
+    In order to store this result in eax I used the following logic:
+        1.I put the value of esp in eax with the instructions(push esp; pop eax;).
+          I looked it up to see if esp is updated before the push or after. 
+          (The PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed).
+        2.Then I substracted 0x7f from eax untill the remaining is less then 0x7f. The substraction is made similiar to section 2 in The decoder code.
+        3.finnaly I substracted the remaining (if larger then 0).
+
+For padding purposes I used the instruction: 'inc edx' which encoded to 0x42.
+

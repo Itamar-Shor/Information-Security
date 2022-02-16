@@ -1,0 +1,4 @@
+In this implementation I changed only the 'xor' byte (=second byte).
+The function computes the xor of 'count' (=first byte) bytes starting from the third byte with the value 0xA6, and puts the result in the second byte.
+
+If the message is less then 2 bytes then the function replace the message with: \x02\xb7\x44\x55 (arbitrary message)
