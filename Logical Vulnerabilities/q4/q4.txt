@@ -1,0 +1,7 @@
+The key idea here, as we saw in the recitation (Master Key), is to verify a 'good' command with its right signature
+and run our 'bad' command afterwards. 
+This is done by passing the run script with 2 enteries of 'command' one of them is the 'echo cool' command which we want to be verified,
+and the other is the 'echo hacked' command which we want to execute.
+This is possible because Alice and Bob are reading the input in 2 different ways:
+    (*) Alice is reading the input with json, which consider it as dictionary, and thats why only the latest command will be 'visible' to the verification.
+    (*) Bob is reading the input as a string, and he takes the first command appearence he finds!

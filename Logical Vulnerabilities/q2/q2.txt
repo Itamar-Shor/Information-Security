@@ -1,0 +1,5 @@
+I used the information from: https://davidhamann.de/2020/04/05/exploiting-python-pickle/.
+As mentioned in the website, not every object can be pickled so those object could implement the __reduce__() method 
+which tells the pickle module how to pickle an instance of this class.
+So (As the website suggested) I created a class with the __reduce__() method, that return only 'echo hacked'.
+When the run.py scripy will try to unpickle the class instance the pickle module will execute the command returned from __reduce__().

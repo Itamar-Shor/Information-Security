@@ -1,0 +1,5 @@
+The run.py script is expacting a string built in the following format - name:pass:cmd.
+Bob is parsing this string by getting the first index of the ':' character and consider all the string up to that char as the user name,
+and by getting the second index of ':' and consider all the string between the two ':' as the password.
+In addition to that, the comparison of the user name and password is made according to the user name and password lenghts that we provided!!!
+So, all we need to do is to bob an empty user name and an empty password (::cmd) and the comparison always succeed (empty comparison).

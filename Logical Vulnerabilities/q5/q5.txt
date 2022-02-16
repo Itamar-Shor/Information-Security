@@ -1,0 +1,12 @@
+The vulnerability I found is of the form: "Time of Check to Time of Use".
+There is a window (large one thanks to slow validation) between the validation and the execution of the command
+in which we could rewrite the file we've passed to the run script. 
+So, we can start with a file that contained a good command that will pass varification, and after the validator is done reading the file
+we will rewrite the command in the file which will make bob run our evil command.
+
+regards the implementation:
+    I used subprocess in order to run the run.py script - because we wan't to do stuff while the script is running!
+    I looked for ways in which I could determind when the validator is done reading - but I didn't found much.
+    So what I actually did was to wait 2 seconds after I run the script and then I rewrite the commnad in the file.
+    The file I created locally (as an argument to tun.py) is: ./foo.
+    I'm assuming that the user's cwd (which run my code - q5.py) is "q5/" . Thats why I'm running "./run.py" in my code. 
